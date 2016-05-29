@@ -59,22 +59,38 @@ class Bomber{
     move(direction){
         switch (direction){
             case 1://up
+<<<<<<< HEAD
                 this.speedY = -4;
+=======
+                this.speedY = -2;
+>>>>>>> origin/master
                 this.speedX = 0;
                 this.direction = 2;
                 break;
             case 2://down
+<<<<<<< HEAD
                 this.speedY = 4;
+=======
+                this.speedY = 2;
+>>>>>>> origin/master
                 this.speedX = 0;
                 this.direction = 0;
                 break;
             case 3://left
+<<<<<<< HEAD
                 this.speedX = -4;
+=======
+                this.speedX = -2;
+>>>>>>> origin/master
                 this.speedY = 0;
                 this.direction = 1;
                 break;
             case 4://right
+<<<<<<< HEAD
                 this.speedX = 4;
+=======
+                this.speedX = 2;
+>>>>>>> origin/master
                 this.speedY = 0;
                 this.direction = 3;
                 break;
