@@ -5,7 +5,7 @@
  * Created by Son Nui on 5/22/2016.
  */
 class Animation {
-    constructor(x, y, name, width, height, dir, countFrame, speed) {
+    constructor(x, y, name, width, height, dir, countFrame, speed, widthframe, heightframe) {
         this.x = x;
         this.y = y;
         this.countFrame = countFrame;
@@ -17,7 +17,8 @@ class Animation {
         this.dir = dir;
         this.count = 0;
         this.sprites.src = "images/" + name + ".png";
-
+        this.widthframe = widthframe;
+        this.heightframe = heightframe;
     }
     update(x, y, dir) {
         this.x = x;
@@ -32,6 +33,6 @@ class Animation {
     }
     draw(context) {
         //context.drawImage(this.sprites, 100,100);
-        context.drawImage(this.sprites, this.index * this.width, this.dir*this.height, this.width, this.height, this.x, this.y, this.width, this.height);
-    }
+        context.drawImage(this.sprites, this.index * this.width, this.dir*this.height, this.width, this.height, this.x, this.y, this.widthframe, this.heightframe);
+   }
 }

@@ -3,6 +3,9 @@
  */
 var wallBrick= new Array();
 var wallWood=new Array();
+
+var bombArray = [];
+var fireArray = [];
 var context;
 window.onload = function () {
     var canvas = document.createElement("canvas");
@@ -47,18 +50,36 @@ var gameLoop = function () {
 function gameDrawer(context) {
     context.fillRect(0, 0, window.innerWidth, window.innerHeight);
     context.fillStyle = 'white';
-
+    
+    for (var i = 0; i < fireArray.length; i++) {
+        fireArray[i].draw(context);
+    }
     for (var i = 0; i < wallBrick.length; i++) {
         wallBrick[i].draw(context);
     }
     for (var i = 0; i < wallWood.length; i++) {
         wallWood[i].draw(context);
     }
-    player.draw(context)
+    player.draw(context);
+    for (var i = 0; i < bombArray.length; i++) {
+        bombArray[i].draw(context);
+    }
 };
 function gameUpdate() {
     player.update();
-    
+    for (var i = 0; i < bombArray.length; i++) {
+        bombArray[i].update();
+        if (bombArray[i].checkBlowUp()) {
+            bombArray[i].blowUp();
+            bombArray.splice(i, 1);
+        }
+    }
+    for (var i = 0; i < fireArray.length; i++) {
+        fireArray[i].update();
+        if (fireArray[i].checkDone()) {
+            fireArray.splice(i,1);
+        }
+    }
 }
 
 window.onkeydown = function (e) {

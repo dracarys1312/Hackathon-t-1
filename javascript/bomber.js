@@ -8,9 +8,9 @@ class Bomber{
         this.id = -1;
         this.speedX = 0;
         this.speedY = 0;
-        this.sprite = new Animation();
-        this.sprite = new Animation(this.x, this.y,"george", 48, 48, 0, 4, 17);
+        this.sprite = new Animation(this.x, this.y,"george", 48, 48, 0, 4, 17, 48, 48);
         this.direction = 0;
+        this.dead = false;
     }
     checkCollision(rect1, rect2) {
         if (rect1.x < rect2.x + rect2.width &&
@@ -45,6 +45,9 @@ class Bomber{
         //         break;
         //     }
         // }
+        if (this.dead == true) {
+            this.direction = 4;
+        }
         if (isMove) {
             this.x += this.speedX;
             this.y += this.speedY;
@@ -59,45 +62,31 @@ class Bomber{
     move(direction){
         switch (direction){
             case 1://up
-<<<<<<< HEAD
                 this.speedY = -4;
-=======
-                this.speedY = -2;
->>>>>>> origin/master
                 this.speedX = 0;
                 this.direction = 2;
                 break;
             case 2://down
-<<<<<<< HEAD
                 this.speedY = 4;
-=======
-                this.speedY = 2;
->>>>>>> origin/master
                 this.speedX = 0;
                 this.direction = 0;
                 break;
             case 3://left
-<<<<<<< HEAD
                 this.speedX = -4;
-=======
-                this.speedX = -2;
->>>>>>> origin/master
                 this.speedY = 0;
                 this.direction = 1;
                 break;
             case 4://right
-<<<<<<< HEAD
                 this.speedX = 4;
-=======
-                this.speedX = 2;
->>>>>>> origin/master
                 this.speedY = 0;
                 this.direction = 3;
                 break;
         }
     }
-    // shot() {
-    //     var bullet = new Bullet(this.x + 12, this.y + 12, this.direction);
-    //     this.bulletArray.push(bullet);
-    // }
+    shot() {
+        // var bullet = new Bullet(this.x + 12, this.y + 12, this.direction);
+        // this.bulletArray.push(bullet);
+        var bomb = new Bomb(this.x, this.y);
+        bombArray.push(bomb);
+    }
 }
