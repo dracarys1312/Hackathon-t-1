@@ -10,9 +10,9 @@ var context;
 window.onload = function () {
     var canvas = document.createElement("canvas");
     context = canvas.getContext("2d");
-    // context.fillStyle = "#FFFFFF";
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    context.fillStyle = "#fff";
+    canvas.width = 510;
+    canvas.height = 510;
     document.body.appendChild(canvas);
     // // gameDrawer(context);
     gameStart();
@@ -26,8 +26,8 @@ window.onload = function () {
 var player;
 function gameStart() {
     player = new Bomber(32, 32);
-    for (var i = 0; i < 20; i++) {
-        for (var j = 0; j < 20; j++) {
+    for (var i = 0; i < 16; i++) {
+        for (var j = 0; j < 16; j++) {
             if (map[i][j] == 1) {
                 // console.log("brick");
                 var brick = new Brick(i, j);
@@ -49,7 +49,7 @@ var gameLoop = function () {
 
 function gameDrawer(context) {
     context.fillRect(0, 0, window.innerWidth, window.innerHeight);
-    context.fillStyle = 'white';
+    context.fillStyle = '#FAF0E6';
     
     for (var i = 0; i < fireArray.length; i++) {
         fireArray[i].draw(context);
