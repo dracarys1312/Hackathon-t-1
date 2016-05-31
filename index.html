@@ -1,9 +1,14 @@
 <html>
+
 <title>Title</title>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!--<script type="text/javascript" src="javascript/tank.js"></script>-->
+
+
     <script type="text/javascript" src="javascript/game.js"></script>
    <script type="text/javascript" src="javascript/map.js"></script>
+    <script type="text/javascript" src="javascript/gift.js"></script>
     <script type="text/javascript" src="javascript/wall.js"></script>
     <script type="text/javascript" src="javascript/animation.js"></script>
     <script type="text/javascript" src="javascript/bomber.js"></script>
@@ -19,9 +24,30 @@
             margin: 60px 0 0 200px;
 
         }
+        #left{
+            position: absolute;
+            width: 200px;
+            height: 300px;
+            border: 1px solid black;
+            margin-left: -350px;
+            border-radius:10px;
+        }
     </style>
+    <div id="left">
+        </br>
+        </br>
+       <center> <b style="color: red;font-size: 20px;"> Hưỡng Dẫn Chơi</b></center></br>
+
+
+        <li>W, A, S, D để di chuyển</li>
+        <li>SPACE  để đặt boom</li>
+        <li><img src="images\lua.png">Ăn để tăng độ dài của lửa</li></br>
+        <li><img src="images\boom.png">Ăn để tăng thêm boom </li>
+        <li><img src="images\giay.png">Ăn để tăng tốc độ</li>
+    </div>
 </head>
 <body>
+<audio id="soundEfx" src="sound/game.mp3" autoplay  style="display: none; "></audio>
  <img class="anh" src="images\benner.png"/>
 </body>
 </html>

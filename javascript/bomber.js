@@ -11,6 +11,7 @@ class Bomber{
         this.sprite = new Animation(this.x, this.y,"george", 48, 48, 0, 4, 17, 48, 48);
         this.direction = 0;
         this.dead = false;
+        this.one=1;
     }
     checkCollision(rect1, rect2) {
         if (rect1.x < rect2.x + rect2.width &&
@@ -23,7 +24,7 @@ class Bomber{
     }
     update() {
         var isMove = true;
-        var rect1 = {x:this.x+8 + this.speedX, y:this.y+8 + this.speedY, width:32, height:32};
+        var rect1 = {x:this.x+ 8 + this.speedX, y:this.y + 8 + this.speedY, width:32, height:32};
         for (var i = 0; i < wallBrick.length; i++) {
             var rect2 = {x:wallBrick[i].x, y:wallBrick[i].y, width:32, height:32};
             if (this.checkCollision(rect1, rect2) == true) {
@@ -38,6 +39,13 @@ class Bomber{
                 break;
             }
         }
+       // for(var i=0;i<wallBom.length;i++){
+         //   var rect2={x:wallBom[i].x,y:wallBom[i].y,width:28,height:28};
+           // if(this.checkCollision(rect1,rect2)==true){
+             //   isMove=false;
+               // break;
+            //}
+        //}
         // for (var i = 0; i < woodArray.length; i++) {
         //     var rect2 = {x:woodArray[i].x, y:woodArray[i].y, width:48, height:48};
         //     if (this.checkCollision(rect1, rect2) == true) {
@@ -84,9 +92,14 @@ class Bomber{
         }
     }
     shot() {
-        // var bullet = new Bullet(this.x + 12, this.y + 12, this.direction);
-        // this.bulletArray.push(bullet);
-        var bomb = new Bomb(this.x, this.y);
-        bombArray.push(bomb);
+        var sx = Math.trunc((this.x + 10) / 32) * 32;
+        var sy = Math.trunc((this.y + 10) / 32) * 32;
+        if ((this.x + 10) % 32 == 0 || (this.x + 10) % 32 > 16) sx += 32;
+        if ((this.y + 10) % 32 == 0 || (this.y + 10) % 32 > 16) sy += 32;
+        // console.log(sx + " " + sy);
+        var bomb = new Bomb(sx, sy,this.one);
+        if(bombArray.length<this.one){
+        
+        bombArray.push(bomb);}
     }
 }

@@ -4,6 +4,10 @@ class Fire{
         this.y = y;
         this.sprite = new Animation(this.x, this.y,"fire", 38, 38, 0, 10, 17, 48, 48);
         this.count = 17*6;
+        if(soundEfx.paused) {
+            soundEfx.src = 'sound/bomb.ogg';
+            soundEfx.play();
+        }
     }
     update() {
         this.sprite.update(this.x, this.y, 0);

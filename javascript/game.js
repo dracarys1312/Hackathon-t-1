@@ -3,11 +3,13 @@
  */
 var wallBrick= new Array();
 var wallWood=new Array();
-
+var giftArray=[];
 var bombArray = [];
 var fireArray = [];
 var context;
 window.onload = function () {
+    soundEfx = document.getElementById("soundEfx");
+
     var canvas = document.createElement("canvas");
     context = canvas.getContext("2d");
     context.fillStyle = "#fff";
@@ -22,10 +24,28 @@ window.onload = function () {
     gameDrawer(context);
     setInterval(gameLoop, 17);
 
+
 };
 var player;
+var startX, startY;
+function randomStart() {
+    startX = 0; startY = 0;
+    do{
+        startX = Math.trunc(Math.random() * 20);
+        startY = Math.trunc(Math.random() * 20);
+    }while  (startX < 1 || startX > 18 || startY < 1 || startY > 18 || map[startX][startY] != 0);
+
+    // console.log(startX + " " +startY + " " +map[startY][startX]);
+    startX *= 32;
+    startY *= 32;
+    startX -= 8;
+    startY -= 8;
+}
 function gameStart() {
-    player = new Bomber(32, 32);
+    soundEfx.play();
+
+    randomStart();
+    player = new Bomber(startX, startY);
     for (var i = 0; i < 16; i++) {
         for (var j = 0; j < 16; j++) {
             if (map[i][j] == 1) {
@@ -36,6 +56,13 @@ function gameStart() {
                 // console.log("steel");
                 var wood = new Wood(i, j);
                 wallWood.push(wood);
+            }
+            if (map[i][j] == 3) {
+                var wood = new Wood(i, j);
+                wallWood.push(wood);
+                kind = Math.trunc(Math.random() * 3);
+                var gift = new Gift(i * 32, j * 32, kind);
+                giftArray.push(gift);
             }
 
         }
@@ -49,17 +76,21 @@ var gameLoop = function () {
 
 function gameDrawer(context) {
     context.fillRect(0, 0, window.innerWidth, window.innerHeight);
-    context.fillStyle = '#FAF0E6';
-    
+    context.fillStyle = '#66CC33';
+
     for (var i = 0; i < fireArray.length; i++) {
         fireArray[i].draw(context);
     }
     for (var i = 0; i < wallBrick.length; i++) {
         wallBrick[i].draw(context);
     }
+    for(var i=0;i<giftArray.length;i++){
+        giftArray[i].draw(context);
+    }
     for (var i = 0; i < wallWood.length; i++) {
         wallWood[i].draw(context);
     }
+
     player.draw(context);
     for (var i = 0; i < bombArray.length; i++) {
         bombArray[i].draw(context);
